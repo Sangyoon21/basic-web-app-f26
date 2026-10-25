@@ -65,6 +65,7 @@ describe("QueryProcessor math", () => {
         ["Which of the following numbers is both a square and a cube: 64, 12, 729, 100?", "64, 729"],
         ["Which of the following numbers are primes: 7, 10, 13, 1?", "7, 13"],
         ["What is the average of something?", ""],
+        ["Which of the following is an anagram of admirer: border, random, dairy, forgot, married?", "married"],
     ])("%s", (query, expected) => {
         expect(QueryProcessor(query)).toBe(expected);
     });

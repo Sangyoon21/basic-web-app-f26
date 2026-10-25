@@ -99,6 +99,16 @@ export default function QueryProcessor(query: string): string {
     return listAfterColon(query).filter(isPrime).join(", ");
   }
 
+  const anagram = lower.match(/anagram of (\w+):\s*(.+)/);
+  if (anagram) {
+    const sortLetters = (word: string) => word.split("").sort().join("");
+    const target = sortLetters(anagram[1]);
+    return anagram[2]
+      .split(/[,\s?]+/)
+      .filter((word) => word && word !== anagram[1] && sortLetters(word) === target)
+      .join(", ");
+  }
+
   const expression = query.match(EXPRESSION);
   if (expression) {
     return evaluate(expression[0]);

@@ -41,4 +41,12 @@ describe("QueryProcessor", () => {
             "75"
           ));
     })
+
+    test('should return sum', () => {
+        const query = "What is 12 plus 45?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe((
+            "57"
+          ));
+    })
 });

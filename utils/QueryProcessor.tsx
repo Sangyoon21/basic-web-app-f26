@@ -18,6 +18,13 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    const numbers = (query.match(/-?\d+/g) || []).map(Number);
+    if (numbers.length > 0) {
+      return numbers.reduce((a, b) => a + b, 0).toString();
+    }
+  }
+
   if (query.toLowerCase().includes("name")) {
     return "asdf";
   }

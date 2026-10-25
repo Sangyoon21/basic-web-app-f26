@@ -55,3 +55,17 @@ describe("QueryProcessor", () => {
         expect(QueryProcessor("9f8e: Which of the following numbers is the largest: 45, 43, 19?")).toBe("45");
     })
 });
+describe("QueryProcessor math", () => {
+    test.each([
+        ["What is 87 minus 19?", "68"],
+        ["What is 7 multiplied by 6?", "42"],
+        ["What is 2 plus 3 multiplied by 4?", "14"],
+        ["What is 2 to the power of 70?", "1180591620717411303424"],
+        ["What is 5 minus 9 plus 1?", "-3"],
+        ["Which of the following numbers is both a square and a cube: 64, 12, 729, 100?", "64, 729"],
+        ["Which of the following numbers are primes: 7, 10, 13, 1?", "7, 13"],
+        ["What is the average of something?", ""],
+    ])("%s", (query, expected) => {
+        expect(QueryProcessor(query)).toBe(expected);
+    });
+});

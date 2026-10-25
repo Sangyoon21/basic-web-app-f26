@@ -11,6 +11,13 @@ export default function QueryProcessor(query: string): string {
     return "sangyoon";
   }
 
+  if (query.toLowerCase().includes("largest")) {
+    const numbers = (query.match(/-?\d+/g) || []).map(Number);
+    if (numbers.length > 0) {
+      return Math.max(...numbers).toString();
+    }
+  }
+
   if (query.toLowerCase().includes("name")) {
     return "asdf";
   }

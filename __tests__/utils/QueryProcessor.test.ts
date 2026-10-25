@@ -49,4 +49,9 @@ describe("QueryProcessor", () => {
             "57"
           ));
     })
+
+    test('should ignore id prefix in math queries', () => {
+        expect(QueryProcessor("a1b2c3: What is 87 plus 19?")).toBe("106");
+        expect(QueryProcessor("9f8e: Which of the following numbers is the largest: 45, 43, 19?")).toBe("45");
+    })
 });

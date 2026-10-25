@@ -11,18 +11,18 @@ export default function QueryProcessor(query: string): string {
     return "sangyoon";
   }
 
-  if (query.toLowerCase().includes("largest")) {
-    const numbers = (query.match(/-?\d+/g) || []).map(Number);
+  const largestMatch = query.match(/largest:\s*([-\d,\s]+)/i);
+  if (largestMatch) {
+    const numbers = (largestMatch[1].match(/-?\d+/g) || []).map(Number);
     if (numbers.length > 0) {
       return Math.max(...numbers).toString();
     }
   }
 
-  if (query.toLowerCase().includes("plus")) {
-    const numbers = (query.match(/-?\d+/g) || []).map(Number);
-    if (numbers.length > 0) {
-      return numbers.reduce((a, b) => a + b, 0).toString();
-    }
+  const plusMatch = query.match(/(-?\d+(?:\s+plus\s+-?\d+)+)/i);
+  if (plusMatch) {
+    const numbers = (plusMatch[1].match(/-?\d+/g) || []).map(Number);
+    return numbers.reduce((a, b) => a + b, 0).toString();
   }
 
   if (query.toLowerCase().includes("name")) {
